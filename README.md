@@ -1,6 +1,6 @@
 # lab05 — แบบฝึกหัดที่ 5: First 3D Game
 
-เกม 3D Platformer ทำด้วย **Godot 4.7** (Compatibility renderer, export เป็น Web ได้)
+เกม 3D Platformer ทำด้วย **Godot 4.7** 
 ต่อยอดจาก [3D Platformer Starter Kit](https://store.godotengine.org/asset/the-silver-demons/platformer-3d-starter-kit/) ของ SD Studios
 
 ## วิธีเล่น
@@ -29,7 +29,6 @@
 
 **ตัวละคร (Player)**
 - เปลี่ยนจาก Gobot เป็นตัวละครของ Quaternius จาก Poly Pizza (low-poly ประมาณ 5.8k tris)
-- สร้าง `Assets/Models/Characters/player_animations.tres` เพื่อ **map ท่าของตัวละครใหม่ให้ใช้ชื่อเดิมของ kit** ทำให้ `player.gd` ยังเรียก `animation.play("Idle" / "Run" / "Jump" / "Flip")` ได้เหมือนเดิม
 
 | ชื่อใน kit | คลิปของตัวละครใหม่ | หมายเหตุ |
 |---|---|---|
@@ -46,38 +45,4 @@
 
 **ฉาก**: ทั้งสองด่านใช้โมเดล low-poly จาก Poly Pizza, ท้องฟ้าแบบ procedural, หมอก, เงา, shader ลาวาที่ขยับได้ และคบเพลิงที่มีแสง
 
-## โครงสร้างโปรเจกต์
 
-```
-Scenes/
-  UI/MainMenu.tscn, GameUI.tscn, WinScreen.tscn
-  Levels/Level1.tscn, Level2.tscn
-  Props/  Star, Door, Checkpoint, Spring, SawBlade, SpikeTrap, SpikyBallOrbit, SpikedPillar, Spikes, WoodenStakes, Torch
-  Characters/CharacterModel.tscn
-  player.tscn
-Scripts/
-  player.gd, CameraMovement.gd, GameManager.gd (autoload), AudioManager.gd (autoload)
-  Block.gd (@tool พื้นแบบ low-poly: GRASS / STONE / WOOD), Mover.gd (เลื่อน/หมุน/แกว่ง)
-  Collectible.gd, Hazard.gd, SpikeTrap.gd, Spring.gd, Checkpoint.gd, Door.gd, DeadZone.gd
-  Level.gd, GameUI.gd, MainMenu.gd, WinScreen.gd
-tools/
-  build.gd / build.tscn   สคริปต์ที่สร้างฉากทั้งหมดในครั้งแรก (ถ้ารันซ้ำจะเขียนทับฉาก)
-  shot.gd / shot.tscn     ตัวทดสอบอัตโนมัติ: รันฉาก, จำลองการกดปุ่ม, ถ่ายภาพหน้าจอ
-```
-
-ฉากทุกฉากเป็นไฟล์ `.tscn` ปกติ เปิดแก้ใน Godot Editor ได้เลย บล็อกพื้นปรับ `size` / `style` ได้ใน Inspector
-
-## Export เป็นเว็บ
-
-```bash
-godot --headless --path . --export-release "Web" docs/index.html
-```
-
-ไฟล์เกมเว็บอยู่ในโฟลเดอร์ `docs/` (GitHub Pages เสิร์ฟจาก branch `main` โฟลเดอร์ `/docs`) preset "Web" ปิด thread support ไว้ จึงอัปขึ้น **GitHub Pages** หรือ static hosting ทั่วไปได้ทันที โดยไม่ต้องตั้ง COOP/COEP header
-
-## เครดิต
-
-- Starter kit: [3D Platformer Starter Kit](https://github.com/SilverDemons-PK/3D-Platformer-Kit) โดย SD Studios — CC0
-- ตัวละคร, กับดัก, ของตกแต่งปราสาท, พืชพรรณ: **Quaternius** ผ่าน [Poly Pizza](https://poly.pizza) — CC0
-- เกาะลอย, ต้นไม้, รั้ว, ป้าย, ดาว, หลักไม้แหลม: **J-Toastie** ผ่าน [Poly Pizza](https://poly.pizza) — CC-BY 3.0
-- เสียง: จาก starter kit
