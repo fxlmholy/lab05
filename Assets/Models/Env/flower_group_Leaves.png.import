@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3dpp54knlyeh"
-path="res://.godot/imported/flower_group_Leaves.png-0245209d7a9c5821b730b68703deea02.ctex"
+path.s3tc="res://.godot/imported/flower_group_Leaves.png-0245209d7a9c5821b730b68703deea02.s3tc.ctex"
+path.etc2="res://.godot/imported/flower_group_Leaves.png-0245209d7a9c5821b730b68703deea02.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "11857c379298fad10da2810250c8c371"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Models/Env/flower_group_Leaves.png"
-dest_files=["res://.godot/imported/flower_group_Leaves.png-0245209d7a9c5821b730b68703deea02.ctex"]
+dest_files=["res://.godot/imported/flower_group_Leaves.png-0245209d7a9c5821b730b68703deea02.s3tc.ctex", "res://.godot/imported/flower_group_Leaves.png-0245209d7a9c5821b730b68703deea02.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +42,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
