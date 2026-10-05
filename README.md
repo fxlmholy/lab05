@@ -1,5 +1,7 @@
 # lab05 — แบบฝึกหัดที่ 5: First 3D Game
 
+#จิตติพัฒน์ มูลศรี 673380437-5
+
 เกม 3D Platformer ทำด้วย **Godot 4.7** 
 ต่อยอดจาก [3D Platformer Starter Kit](https://store.godotengine.org/asset/the-silver-demons/platformer-3d-starter-kit/) ของ SD Studios
 
@@ -30,18 +32,8 @@
 **ตัวละคร (Player)**
 - เปลี่ยนจาก Gobot เป็นตัวละครของ Quaternius จาก Poly Pizza (low-poly ประมาณ 5.8k tris)
 
-| ชื่อใน kit | คลิปของตัวละครใหม่ | หมายเหตุ |
-|---|---|---|
-| Idle | Idle | loop |
-| Run | Run | loop |
-| Jump | Jump | |
-| Flip | Jump + track หมุน `FlipPivot` 360° | ใช้กับ double jump แทน flip ของ Gobot |
-| Fall *(เพิ่ม)* | Jump_Idle | loop ตอนกำลังตก |
-| Hurt *(เพิ่ม)* | HitReact | ตอนโดนกับดัก |
-| Death *(เพิ่ม)* | Death | ตอนชีวิตหมด |
-| Victory *(เพิ่ม)* | Wave | ตอนเข้าประตู / หน้าชนะ |
 
-**Gameplay ที่เพิ่ม**: ระบบชีวิต, checkpoint, ไอเท็มดาวที่นับจำนวนในด่านเอง, ประตูที่ล็อกจนกว่าจะเก็บครบ, กับดัก 6 แบบ, แท่นเคลื่อนที่ที่พาตัวละครไปด้วย (ย้ายการเคลื่อนที่ไปไว้ใน `_physics_process`), สปริง, เมนูหลัก, หน้าหยุดเกม, หน้าชนะพร้อมสถิติ
+**Gameplay ที่เพิ่ม**: ระบบชีวิต, checkpoint, ไอเท็มดาวที่นับจำนวนในด่านเอง, ประตูที่ล็อกจนกว่าจะเก็บครบ
 
 **ฉาก**: ทั้งสองด่านใช้โมเดล low-poly จาก Poly Pizza, ท้องฟ้าแบบ procedural, หมอก, เงา, shader ลาวาที่ขยับได้ และคบเพลิงที่มีแสง
 
