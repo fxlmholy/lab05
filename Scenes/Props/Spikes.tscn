@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/spikes.glb" id="1_xgch7"]
+[ext_resource type="Script" path="res://Scripts/Hazard.gd" id="2_ilx4s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27nkh"]
+size = Vector3(0.8, 1.4, 0.8)
+
+[node name="Spikes" type="Node3D" unique_id=1129267490]
+
+[node name="Model" type="Node3D" parent="." unique_id=529491393 instance=ExtResource("1_xgch7")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
+
+[node name="Hazard" type="Area3D" parent="." unique_id=1174967115]
+script = ExtResource("2_ilx4s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hazard" unique_id=141574857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("BoxShape3D_27nkh")

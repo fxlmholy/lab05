@@ -1,0 +1,83 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Door.gd" id="1_4vewk"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/arch.glb" id="2_5f3ot"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/arch_door.glb" id="3_3bp0q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pkye"]
+shading_mode = 0
+albedo_color = Color(1, 0.8, 0.35, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u4kfc"]
+material = SubResource("StandardMaterial3D_7pkye")
+size = Vector2(2.3, 3.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4nehw"]
+size = Vector3(0.85, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2wahf"]
+size = Vector3(0.85, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h63tv"]
+size = Vector3(4.1, 0.8, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nc6l3"]
+size = Vector3(2.4, 3.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxffd"]
+size = Vector3(2.2, 3, 1.2)
+
+[node name="Door" type="Node3D" unique_id=1341744019]
+script = ExtResource("1_4vewk")
+
+[node name="Arch" type="Node3D" parent="." unique_id=684184554 instance=ExtResource("2_5f3ot")]
+
+[node name="Hinge" type="Node3D" parent="." unique_id=906508981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21, 0, 0)
+
+[node name="DoorModel" type="Node3D" parent="Hinge" unique_id=2004908338 instance=ExtResource("3_3bp0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21, 0, 0)
+
+[node name="Portal" type="MeshInstance3D" parent="." unique_id=1711179574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, -0.2)
+mesh = SubResource("QuadMesh_u4kfc")
+
+[node name="Frame" type="StaticBody3D" parent="." unique_id=2091096457]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frame" unique_id=1266457077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62, 2, 0)
+shape = SubResource("BoxShape3D_4nehw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Frame" unique_id=10977869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62, 2, 0)
+shape = SubResource("BoxShape3D_2wahf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Frame" unique_id=747486021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
+shape = SubResource("BoxShape3D_h63tv")
+
+[node name="Blocker" type="StaticBody3D" parent="." unique_id=112571651]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blocker" unique_id=991687302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("BoxShape3D_nc6l3")
+
+[node name="ExitArea" type="Area3D" parent="." unique_id=1594221194]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitArea" unique_id=1370881738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.6)
+shape = SubResource("BoxShape3D_pxffd")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1380359466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
+pixel_size = 0.008
+billboard = 1
+text = "LOCKED"
+font_size = 72
+outline_size = 18
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=664252599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0.8)
+light_color = Color(1, 0.8, 0.4, 1)
+light_energy = 2.0
+omni_range = 6.0

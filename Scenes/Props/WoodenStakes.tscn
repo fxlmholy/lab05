@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/wooden_spike.glb" id="1_lub67"]
+[ext_resource type="Script" path="res://Scripts/Hazard.gd" id="2_b56su"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mogyl"]
+size = Vector3(1.4, 1.2, 1.4)
+
+[node name="WoodenStakes" type="Node3D" unique_id=1300849771]
+
+[node name="Stake0" type="Node3D" parent="." unique_id=128421661 instance=ExtResource("1_lub67")]
+transform = Transform3D(0.8, 0, 0, 0, 0.7980513, 0.055805176, 0, -0.055805176, 0.7980513, -0.4, 0, -0.2)
+
+[node name="Stake1" type="Node3D" parent="." unique_id=1681211835 instance=ExtResource("1_lub67")]
+transform = Transform3D(0.70476097, 0.041251507, 0.5899241, 0, 0.91775894, -0.064175956, -0.59136456, 0.049161635, 0.7030442, 0.1, 0, 0.3)
+
+[node name="Stake2" type="Node3D" parent="." unique_id=843914804 instance=ExtResource("1_lub67")]
+transform = Transform3D(0.18059427, -0.07144458, 1.0217052, 0, 1.0374666, 0.07254673, -1.0242, -0.012597619, 0.18015435, 0.45, 0, -0.3)
+
+[node name="Stake3" type="Node3D" parent="." unique_id=324707406 instance=ExtResource("1_lub67")]
+transform = Transform3D(-0.40000007, 0.0483287, 0.69113266, 0, 0.7980513, -0.055805176, -0.6928203, -0.027902592, -0.39902568, -0.2, 0, 0.45)
+
+[node name="Stake4" type="Node3D" parent="." unique_id=425539174 instance=ExtResource("1_lub67")]
+transform = Transform3D(-0.8645171, -0.021949489, 0.31389233, 0, 0.91775894, 0.064175956, -0.31465882, 0.060305666, -0.86241126, 0.05, 0, -0.55)
+
+[node name="Hazard" type="Area3D" parent="." unique_id=1699173508]
+script = ExtResource("2_b56su")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hazard" unique_id=1445962892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape3D_mogyl")

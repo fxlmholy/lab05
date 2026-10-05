@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Mover.gd" id="1_e5dpk"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/spiky_ball.glb" id="2_waifo"]
+[ext_resource type="Script" path="res://Scripts/Hazard.gd" id="3_d6pns"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq7vb"]
+albedo_color = Color(0.25, 0.23, 0.28, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gykch"]
+material = SubResource("StandardMaterial3D_mq7vb")
+top_radius = 0.2
+bottom_radius = 0.3
+height = 1.4
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jgiy"]
+albedo_color = Color(0.35, 0.33, 0.38, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bjs1c"]
+material = SubResource("StandardMaterial3D_4jgiy")
+size = Vector3(3, 0.1, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ph3hp"]
+radius = 0.6
+
+[node name="SpikyBallOrbit" type="Node3D" unique_id=953272742]
+
+[node name="Post" type="MeshInstance3D" parent="." unique_id=1484987422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = SubResource("CylinderMesh_gykch")
+
+[node name="Arm" type="Node3D" parent="." unique_id=1865864966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Mover" type="Node" parent="Arm" unique_id=633660627]
+script = ExtResource("1_e5dpk")
+mode = 1
+speed_deg = 100.0
+
+[node name="Chain" type="MeshInstance3D" parent="Arm" unique_id=1558686426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+mesh = SubResource("BoxMesh_bjs1c")
+
+[node name="Ball" type="Node3D" parent="Arm" unique_id=1914256821 instance=ExtResource("2_waifo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="Hazard" type="Area3D" parent="Arm" unique_id=508909129]
+script = ExtResource("3_d6pns")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arm/Hazard" unique_id=487615086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+shape = SubResource("SphereShape3D_ph3hp")

@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/cylinder_hazard.glb" id="1_va1us"]
+[ext_resource type="Script" path="res://Scripts/Mover.gd" id="2_sn7g4"]
+[ext_resource type="Script" path="res://Scripts/Hazard.gd" id="3_0xrrn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ycadj"]
+height = 2.3
+radius = 0.75
+
+[node name="SpikedPillar" type="Node3D" unique_id=1346801704]
+
+[node name="Model" type="Node3D" parent="." unique_id=656691119 instance=ExtResource("1_va1us")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Mover" type="Node" parent="Model" unique_id=775356819]
+script = ExtResource("2_sn7g4")
+mode = 1
+speed_deg = 150.0
+
+[node name="Hazard" type="Area3D" parent="." unique_id=553596674]
+script = ExtResource("3_0xrrn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hazard" unique_id=1690707284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+shape = SubResource("CylinderShape3D_ycadj")

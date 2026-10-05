@@ -1,0 +1,55 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Collectible.gd" id="1_ej7vm"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/star.glb" id="2_4ep64"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/particle.png" id="3_qri4y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ej7vm"]
+radius = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l53i"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_qri4y")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_r7xbe"]
+material = SubResource("StandardMaterial3D_0l53i")
+
+[sub_resource type="Curve" id="Curve_lwc68"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.495025, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_db7aj"]
+colors = PackedColorArray(0.996078, 0.909804, 0.352941, 1, 1, 1, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4ep64"]
+radius = 1.6
+
+[node name="Star" type="Area3D" unique_id=1941934577]
+script = ExtResource("1_ej7vm")
+
+[node name="Model" type="Node3D" parent="." unique_id=1286174297 instance=ExtResource("2_4ep64")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.45, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1271154034]
+shape = SubResource("SphereShape3D_ej7vm")
+
+[node name="Sparkles" type="CPUParticles3D" parent="." unique_id=1102235206]
+mesh = SubResource("QuadMesh_r7xbe")
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+damping_min = 0.5
+damping_max = 0.5
+scale_amount_min = 0.15
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_lwc68")
+color_ramp = SubResource("Gradient_db7aj")
+
+[node name="Range" type="Area3D" parent="." unique_id=1770765719]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Range" unique_id=1454385256]
+shape = SubResource("SphereShape3D_4ep64")

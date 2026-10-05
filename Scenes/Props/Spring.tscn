@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/spring.glb" id="1_45hne"]
+[ext_resource type="Script" path="res://Scripts/Spring.gd" id="2_fnugv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_55n6k"]
+size = Vector3(1.1, 0.6, 1.1)
+
+[node name="Spring" type="Node3D" unique_id=1169845995]
+
+[node name="Model" type="Node3D" parent="." unique_id=525555277 instance=ExtResource("1_45hne")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+
+[node name="Pad" type="Area3D" parent="." unique_id=558721956]
+script = ExtResource("2_fnugv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pad" unique_id=347628561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_55n6k")

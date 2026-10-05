@@ -1,0 +1,159 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/WinScreen.gd" id="1_meeha"]
+[ext_resource type="Script" path="res://Scripts/Block.gd" id="2_hs41l"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/CharacterModel.tscn" id="3_q5rno"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/tree_large.glb" id="4_wbrdf"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/pine.glb" id="5_27oy1"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/bush_flowers.glb" id="6_ut6ah"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/flower_group.glb" id="7_q4bx4"]
+[ext_resource type="PackedScene" path="res://Scenes/Props/Star.tscn" id="8_el0es"]
+[ext_resource type="Script" path="res://Scripts/Collectible.gd" id="9_wv5no"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/cloud.glb" id="10_lwgk5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eiba2"]
+sky_top_color = Color(0.16, 0.1, 0.28, 1)
+sky_horizon_color = Color(0.9, 0.42, 0.25, 1)
+ground_bottom_color = Color(0.35, 0.08, 0.05, 1)
+ground_horizon_color = Color(0.9, 0.42, 0.25, 1)
+sun_angle_max = 20.0
+
+[sub_resource type="Sky" id="Sky_888y5"]
+sky_material = SubResource("ProceduralSkyMaterial_eiba2")
+
+[sub_resource type="Environment" id="Environment_v3cwv"]
+background_mode = 2
+sky = SubResource("Sky_888y5")
+ambient_light_source = 3
+ambient_light_energy = 0.5
+tonemap_mode = 2
+tonemap_exposure = 0.9
+glow_enabled = true
+glow_intensity = 0.8
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.55, 0.22, 0.18, 1)
+fog_density = 1.0
+fog_depth_begin = 35.0
+fog_depth_end = 150.0
+adjustment_enabled = true
+adjustment_saturation = 1.05
+
+[sub_resource type="LabelSettings" id="LabelSettings_pmjcr"]
+font_size = 96
+font_color = Color(1, 0.86, 0.3, 1)
+outline_size = 16
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sdyp"]
+font_size = 30
+outline_size = 5
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[node name="WinScreen" type="Node3D" unique_id=165510184]
+script = ExtResource("1_meeha")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=936701291]
+environment = SubResource("Environment_v3cwv")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1430997768]
+transform = Transform3D(-0.76604444, 0.36868784, -0.5265408, 0, 0.81915206, 0.57357645, 0.64278764, 0.43938506, -0.62750685, 0, 0, 0)
+light_color = Color(1, 0.62, 0.45, 1)
+light_energy = 0.85
+shadow_enabled = true
+directional_shadow_max_distance = 60.0
+
+[node name="Block" type="AnimatableBody3D" parent="." unique_id=339140373]
+script = ExtResource("2_hs41l")
+size = Vector3(8, 2, 8)
+style = 1
+
+[node name="Character" type="Node3D" parent="." unique_id=1580498864 instance=ExtResource("3_q5rno")]
+
+[node name="TreeLarge" type="Node3D" parent="." unique_id=1709190779 instance=ExtResource("4_wbrdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, -2.5)
+
+[node name="Pine" type="Node3D" parent="." unique_id=1943262063 instance=ExtResource("5_27oy1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.8, 0, -2.8)
+
+[node name="BushFlowers" type="Node3D" parent="." unique_id=642129423 instance=ExtResource("6_ut6ah")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 2.6, 0, 2.4)
+
+[node name="FlowerGroup" type="Node3D" parent="." unique_id=725576269 instance=ExtResource("7_q4bx4")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -2.5, 0, 2.5)
+
+[node name="Star" type="Area3D" parent="." unique_id=1941934577 instance=ExtResource("8_el0es")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.6, 1.2)
+script = ExtResource("9_wv5no")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1778841975]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1176111458]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 2, 6)
+fov = 55.0
+
+[node name="Cloud" type="Node3D" parent="." unique_id=1683095344 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 22, -4, 0)
+
+[node name="Cloud2" type="Node3D" parent="." unique_id=1410754806 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(1.767767, 0, 1.767767, 0, 2.5, 0, -1.767767, 0, 1.767767, 15.556349, -1, 15.556349)
+
+[node name="Cloud3" type="Node3D" parent="." unique_id=1061274168 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, 1.347067e-15, 2, 22)
+
+[node name="Cloud4" type="Node3D" parent="." unique_id=855610053 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(-1.767767, 0, 1.767767, 0, 2.5, 0, -1.767767, 0, -1.767767, -15.556349, -4, 15.556349)
+
+[node name="Cloud5" type="Node3D" parent="." unique_id=1242992700 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(-2.5, 0, -2.1855695e-07, 0, 2.5, 0, 2.1855695e-07, 0, -2.5, -22, -1, 2.694134e-15)
+
+[node name="Cloud6" type="Node3D" parent="." unique_id=439869138 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(-1.7677671, 0, -1.7677667, 0, 2.5, 0, 1.7677667, 0, -1.7677671, -15.556349, 2, -15.556349)
+
+[node name="Cloud7" type="Node3D" parent="." unique_id=208105751 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(2.9812202e-08, 0, -2.5, 0, 2.5, 0, 2.5, 0, 2.9812202e-08, -4.041201e-15, -4, -22)
+
+[node name="Cloud8" type="Node3D" parent="." unique_id=683833629 instance=ExtResource("10_lwgk5")]
+transform = Transform3D(1.7677666, 0, -1.7677672, 0, 2.5, 0, 1.7677672, 0, 1.7677666, 15.556349, -1, -15.556349)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1806234084]
+
+[node name="Center" type="CenterContainer" parent="UI" unique_id=1662669039]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="UI/Center" unique_id=17651751]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="UI/Center/VBox" unique_id=94027997]
+layout_mode = 2
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_pmjcr")
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="UI/Center/VBox" unique_id=1948611413]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8sdyp")
+horizontal_alignment = 1
+
+[node name="Gap" type="Control" parent="UI/Center/VBox" unique_id=1226184598]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="Again" type="Button" parent="UI/Center/VBox" unique_id=1102418142]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "PLAY AGAIN"
+
+[node name="Menu" type="Button" parent="UI/Center/VBox" unique_id=1798513474]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "MAIN MENU"

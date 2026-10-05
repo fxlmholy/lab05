@@ -1,0 +1,169 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/GameUI.gd" id="1_xkiwj"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/star_icon.png" id="2_tog36"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/heart_icon.png" id="3_fe2yh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_npa51"]
+font_size = 36
+font_color = Color(1, 0.86, 0.3, 1)
+outline_size = 6
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_intyv"]
+font_size = 36
+font_color = Color(1, 0.55, 0.55, 1)
+outline_size = 6
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4284l"]
+font_size = 64
+font_color = Color(1, 0.95, 0.8, 1)
+outline_size = 10
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_sinwf"]
+font_size = 34
+outline_size = 5
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5x6t4"]
+font_size = 18
+font_color = Color(1, 1, 1, 0.8)
+outline_size = 4
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_x82rw"]
+font_size = 48
+outline_size = 8
+outline_color = Color(0.08, 0.06, 0.12, 1)
+shadow_size = 0
+
+[node name="GameUI" type="Control" unique_id=1270330024]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_xkiwj")
+
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=365484296]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 24.0
+offset_bottom = 18.0
+theme_override_constants/separation = 10
+
+[node name="StarIcon" type="TextureRect" parent="TopBar" unique_id=1366275610]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_tog36")
+expand_mode = 1
+
+[node name="CoinsLabel" type="Label" parent="TopBar" unique_id=209206493]
+layout_mode = 2
+text = "x 0 / 0"
+label_settings = SubResource("LabelSettings_npa51")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="TopBar" unique_id=320951241]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="HeartIcon" type="TextureRect" parent="TopBar" unique_id=1931768912]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+texture = ExtResource("3_fe2yh")
+expand_mode = 1
+
+[node name="LivesLabel" type="Label" parent="TopBar" unique_id=1060595135]
+layout_mode = 2
+text = "x 5"
+label_settings = SubResource("LabelSettings_intyv")
+horizontal_alignment = 1
+
+[node name="LevelTitle" type="Label" parent="." unique_id=2095198786]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 120.0
+offset_right = 500.0
+offset_bottom = 300.0
+label_settings = SubResource("LabelSettings_4284l")
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=1125140945]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = -90.0
+label_settings = SubResource("LabelSettings_sinwf")
+horizontal_alignment = 1
+
+[node name="Help" type="Label" parent="." unique_id=1518573449]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -40.0
+text = "WASD move  |  SPACE jump (x2 = flip)  |  Mouse / Arrows camera  |  ESC pause"
+label_settings = SubResource("LabelSettings_5x6t4")
+
+[node name="PausePanel" type="PanelContainer" parent="." unique_id=1120470847]
+custom_minimum_size = Vector2(360, 340)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -170.0
+offset_right = -180.0
+offset_bottom = -170.0
+
+[node name="VBox" type="VBoxContainer" parent="PausePanel" unique_id=1129435326]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Title" type="Label" parent="PausePanel/VBox" unique_id=1617423786]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_x82rw")
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="PausePanel/VBox" unique_id=1011398425]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Resume"
+
+[node name="Restart" type="Button" parent="PausePanel/VBox" unique_id=448186324]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Restart Level"
+
+[node name="Menu" type="Button" parent="PausePanel/VBox" unique_id=1789132806]
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Main Menu"

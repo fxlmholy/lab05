@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/saw_blade.glb" id="1_nfot6"]
+[ext_resource type="Script" path="res://Scripts/Mover.gd" id="2_jlg1k"]
+[ext_resource type="Script" path="res://Scripts/Hazard.gd" id="3_bs6pf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x2oyn"]
+height = 0.4
+radius = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xtuo"]
+albedo_color = Color(0.15, 0.15, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d8u1f"]
+material = SubResource("StandardMaterial3D_8xtuo")
+size = Vector3(0.25, 0.08, 0.25)
+
+[node name="SawBlade" type="Node3D" unique_id=1127762667]
+
+[node name="Blade" type="Node3D" parent="." unique_id=1995457626]
+
+[node name="Model" type="Node3D" parent="Blade" unique_id=553504786 instance=ExtResource("1_nfot6")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Mover" type="Node" parent="Blade" unique_id=1960188135]
+script = ExtResource("2_jlg1k")
+mode = 1
+axis = Vector3(0, 0, 1)
+speed_deg = -540.0
+
+[node name="Hazard" type="Area3D" parent="." unique_id=1389143794]
+script = ExtResource("3_bs6pf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hazard" unique_id=606498254]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_x2oyn")
+
+[node name="Hub" type="MeshInstance3D" parent="." unique_id=1104767450]
+mesh = SubResource("BoxMesh_d8u1f")

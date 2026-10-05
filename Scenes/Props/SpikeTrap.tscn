@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/SpikeTrap.gd" id="1_wttxm"]
+[ext_resource type="PackedScene" path="res://Assets/Models/Env/spike_trap.glb" id="2_222yu"]
+[ext_resource type="Script" path="res://Scripts/Hazard.gd" id="3_eg5eh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5r0sm"]
+size = Vector3(1.7, 0.9, 1.7)
+
+[node name="SpikeTrap" type="Node3D" unique_id=686558137]
+script = ExtResource("1_wttxm")
+
+[node name="Model" type="Node3D" parent="." unique_id=102605530 instance=ExtResource("2_222yu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+
+[node name="Hazard" type="Area3D" parent="." unique_id=76320925]
+script = ExtResource("3_eg5eh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hazard" unique_id=1268128065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+shape = SubResource("BoxShape3D_5r0sm")

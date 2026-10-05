@@ -1,0 +1,63 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_fkybt"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/CharacterModel.tscn" id="1_vgqql"]
+[ext_resource type="Script" path="res://Scripts/CameraMovement.gd" id="5_pxu3x"]
+[ext_resource type="ArrayMesh" path="res://Assets/Resources/cloud.res" id="6_nkgvq"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/SFX/walking.ogg" id="7_asqdb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fkybt"]
+radius = 0.35
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02pkc"]
+diffuse_mode = 2
+specular_mode = 2
+metallic_specular = 0.0
+
+[sub_resource type="Curve" id="Curve_ooin1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.236318, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Player" type="CharacterBody3D" unique_id=1269075606 groups=["Player"]]
+floor_snap_length = 0.3
+script = ExtResource("1_fkybt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1347675110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_fkybt")
+
+[node name="Model" type="Node3D" parent="." unique_id=1580498864 instance=ExtResource("1_vgqql")]
+
+[node name="Gimbal" type="Node3D" parent="." unique_id=1077984637]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 1, 0)
+script = ExtResource("5_pxu3x")
+
+[node name="Camera3D" type="Camera3D" parent="Gimbal" unique_id=1652344257]
+transform = Transform3D(1, 0, 0, 0, 0.99026805, 0.1391731, 0, -0.1391731, 0.99026805, 0, 1.6, 6.5)
+current = true
+fov = 70.0
+far = 400.0
+
+[node name="CameraControlTimer" type="Timer" parent="Gimbal" unique_id=174722711]
+wait_time = 2.0
+
+[node name="ParticleTrail" type="CPUParticles3D" parent="." unique_id=1936307346]
+material_override = SubResource("StandardMaterial3D_02pkc")
+amount = 30
+mesh = ExtResource("6_nkgvq")
+emission_shape = 1
+emission_sphere_radius = 0.2
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0.1, 0)
+scale_amount_min = 0.75
+scale_amount_curve = SubResource("Curve_ooin1")
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=200751608]
+stream = ExtResource("7_asqdb")
+pitch_scale = 0.75
+autoplay = true
+
+[connection signal="timeout" from="Gimbal/CameraControlTimer" to="Gimbal" method="_on_camera_control_timer_timeout"]
